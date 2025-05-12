@@ -1,22 +1,26 @@
 from fastapi import FastAPI
 
 from app.db import engine
-from app.models import user, education, experience, forget_password, job_application, job_post_tag, job_post, resume, saved_job, session, skill
-# from app.routers
+# from app.models import user, education, experience, forget_password, job_application, job_post_tag, job_post, resume, saved_job, session, skill
+from app.routers import auth
+from app.routers import user
 
-user.Base.metadata.create_all(bind=engine)
-job_post.Base.metadata.create_all(bind=engine)
-resume.Base.metadata.create_all(bind=engine)
-job_application.Base.metadata.create_all(bind=engine)
-saved_job.Base.metadata.create_all(bind=engine)
-session.Base.metadata.create_all(bind=engine)
-skill.Base.metadata.create_all(bind=engine)
-experience.Base.metadata.create_all(bind=engine)
-education.Base.metadata.create_all(bind=engine)
-forget_password.Base.metadata.create_all(bind=engine)
-job_post_tag.Base.metadata.create_all(bind=engine)
+# user.Base.metadata.create_all(bind=engine)
+# job_post.Base.metadata.create_all(bind=engine)
+# resume.Base.metadata.create_all(bind=engine)
+# job_application.Base.metadata.create_all(bind=engine)
+# saved_job.Base.metadata.create_all(bind=engine)
+# session.Base.metadata.create_all(bind=engine)
+# skill.Base.metadata.create_all(bind=engine)
+# experience.Base.metadata.create_all(bind=engine)
+# education.Base.metadata.create_all(bind=engine)
+# forget_password.Base.metadata.create_all(bind=engine)
+# job_post_tag.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.include_router(auth.router)
+app.include_router(user.router)
 
 @app.get("/")
 def read_root():
