@@ -1,19 +1,19 @@
 from datetime import date
 
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4
 
 class EducationOut(BaseModel):
-    id: str
-    user_id: str
+    id: UUID4
+    user_id: UUID4
     qualification: str
     grade_gained: str
-    grade_total: str
-    start_at: date
-    ended_at: date
+    grade_total: str = ""
+    start_at: date = None
+    ended_at: date = None
     school_name: str
 
 class EducationIn(BaseModel):
-    user_id: str
+    user_id: UUID4
     qualification: str
     grade_gained: str
     grade_total: str = ""

@@ -4,14 +4,17 @@ from sqlalchemy.orm import Session
 
 from app.db import get_db
 from app.models.user import User
+from app.schema.user import UserOut
 
 router = APIRouter()
 
-@router.get("/auth/login")
-async def get_user_by_email(email: str, password: str, db: Session = Depends(get_db)):
+@router.get("/auth/login", response_model=UserOut)
+async def get_user_by_email(email: str, password: str | None = None, db: Session = Depends(get_db)):
     try:
-        # user = db.query(User).filter(User.email == email).all()
-        user = db.query(User).all()
+        user = db.query(User).filter(User.email == email).first()
+        print(user.email)
+        print(user.password)
+        # user = db.query(User).all()
         # user.password = ""
         return user
     except Exception as e:

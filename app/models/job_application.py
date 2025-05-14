@@ -11,7 +11,10 @@ class JobApplication(Base):
     id = Column(UUID, primary_key=True)
     applicant_id = Column(UUID, ForeignKey(User.id), nullable=False)
     job_id = Column(UUID, ForeignKey(JobPost.id), nullable=False)
+    resume: Mapped["Resume"] = relationship(back_populates="job_application")
     user : Mapped["User"] = relationship(back_populates="job_applied")
     job_post : Mapped["JobPost"] = relationship(back_populates="job_applications") 
     created_at = Column(DateTime(timezone=True), default=func.now())
     updated_at = Column(DateTime(timezone=True))
+
+from .resume import Resume

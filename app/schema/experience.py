@@ -1,12 +1,12 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4
 
 class ExperienceIn(BaseModel):
-    user_id: str
+    user_id: UUID4
     year: int
     company_name: str
 
 class ExperienceOut(BaseModel):
-    id: str
-    user_id: str
+    id: UUID4
+    user_id: UUID4
     year: int
     company_name: str

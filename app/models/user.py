@@ -7,16 +7,6 @@ from sqlalchemy.orm import relationship
 
 from app.db import Base
 
-# to avoid circular import
-# if TYPE_CHECKING:
-#     from .job_post import JobPost
-#     from .resume import Resume
-#     from .job_application import JobApplication
-#     from .saved_job import SavedJob
-#     from .skill import Skill
-#     from .experience import Experience
-#     from .education import Education
-
 class UserTypeEnum(enum.Enum):
     applicant = "applicant"
     recruiter = "recruiter"
@@ -38,7 +28,6 @@ class User(Base):
     user_type = Column(Enum(UserTypeEnum, name="usertypeenum", create_type=False), nullable=False)
     gender = Column(Enum(GenderEnum, name="gendertypeenum", creat_type=False), nullable=False)
     job_posted : Mapped[List["JobPost"]] = relationship(back_populates = "user")
-    resume : Mapped["Resume"] = relationship(back_populates = "user")
     job_applied : Mapped[List["JobApplication"]] = relationship(back_populates = "user")
     saved_job : Mapped[List["SavedJob"]] = relationship(back_populates = "user")
     skills : Mapped[List["Skill"]] = relationship(back_populates = "user")

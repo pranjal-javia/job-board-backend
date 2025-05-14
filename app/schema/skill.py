@@ -1,10 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4
 
 class SkillIn(BaseModel):
-    user_id: str
+    user_id: UUID4
     skill: str
 
 class SkillOut(BaseModel):
-    id: str
-    user_id: str
+    id: UUID4
+    user_id: UUID4
     skill: str

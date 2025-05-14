@@ -1,10 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4
 
 class SavedJobIn(BaseModel):
-    applicant_id: str
-    job_id: str
+    applicant_id: UUID4
+    job_id: UUID4
 
 class SavedJobOut(BaseModel):
-    id: str
-    applicant_id: str
-    job_id: str
+    id: UUID4
+    applicant_id: UUID4
+    job_id: UUID4
